@@ -1,0 +1,39 @@
+# DHS microdata is licensed and must never be redistributed. Losing access is
+# permanent, so this exclusion is deliberately broad.
+data/raw/
+*.DTA
+*.dta
+*.shp
+*.dbf
+*.shx
+*.prj
+*.sbn
+*.sbx
+
+# Large intermediates
+*.tif
+*.tiff
+*.pbf
+*.nc
+
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.env
+
+# Chunk checkpoints from extract_all.py
+data/processed/_chunks/
+
+# LaTeX build artifacts
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.bbl
+paper/*.blg
+paper/*.synctex.gz
+
+# The modelling table joins DHS cluster coordinates to wealth index values.
+# That is the GE dataset plus hv271 in substance, and redistributing it would
+# breach the terms accepted for data access. Rebuild it with:
+#   python src/build_table.py
+data/processed/modelling_table.csv
