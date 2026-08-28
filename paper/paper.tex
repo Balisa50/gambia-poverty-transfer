@@ -49,13 +49,14 @@ held-out countries by 3.7 times what sampling noise permits (range 0.821 to
 variation. On The Gambia, constant-width split conformal undercovered at nominal
 50\% and 80\% by more than four standard errors while remaining at nominal at
 90\% and 95\%, and adaptive conformalized quantile regression did not. Both are
-post-hoc and are reported as such. Concurrent work reports a single coverage figure for
-per-country fits; what has not been reported is whether coverage survives
-transfer, measured in-country against out-of-country, per country, and across
-nominal levels. We conclude that
-cross-border transfer of these models is better behaved than caution about
-distribution shift implies, and that the residual risk lies in interval shape
-and in per-country variability rather than in average coverage.
+post-hoc and are reported as such. Coverage holding here is a contrast rather
+than a foregone conclusion: concurrent work measuring conformal coverage on an
+African satellite product under spatial shift reports it falling to 65.3\%
+against a 90\% target. We conclude that cross-border transfer of wealth models
+is better behaved than caution about distribution shift implies, in a region of
+neighbouring countries sharing a survey instrument, and that the residual risk
+lies in interval shape and in per-country variability rather than in average
+coverage.
 \end{abstract}
 
 \section{Introduction}
@@ -157,8 +158,21 @@ report that their split-conformal intervals attain 88.4\% coverage against a
 own survey, and their transfer analysis reports point accuracy without a
 matching coverage figure.
 
+A closer methodological neighbour is \citet{adjei2026}, who fuse satellite and
+reanalysis data to map PM2.5 across 29 African countries, validate under
+location-grouped spatial cross-validation, and apply split conformal prediction
+at a nominal 90\% level. They report empirical coverage and find it fails
+badly under geographic shift, at 65.3\% against the 90\% target in East Africa,
+which they attribute to covariate shift measured directly. The outcome variable
+is air quality rather than welfare, the shift is regional rather than across a
+national border, and coverage is reported at one nominal level for one region.
+Their result nonetheless matters here, because it establishes that conformal
+coverage on African satellite products can collapse under spatial shift. Our
+finding that it largely holds is therefore a contrast to be explained rather
+than a foregone conclusion, and we return to it in Section~\ref{sec:disc}.
+
 What remains unmeasured is therefore not whether these intervals are calibrated
-at all, but whether calibration survives the border. Establishing that requires
+at all, but whether calibration survives the border for this outcome. Establishing that requires
 coverage in-country and out-of-country for the same model and the same
 calibration set, resolved per country rather than pooled, and at more than one
 nominal level, since a method can hold at 90\% while failing at 50\%. We report
@@ -596,7 +610,22 @@ nominal.
 
 We take the practical implication to be that these models transfer better than
 caution about distribution shift would suggest, at least within a region of
-neighbouring countries with a common survey instrument. Two qualifications
+neighbouring countries with a common survey instrument.
+
+That conclusion should be read against \citet{adjei2026}, who measure conformal
+coverage on an African satellite product under spatial shift and find it falls
+to 65.3\% against a 90\% target. Coverage clearly can collapse in this setting,
+so the question is what differs here. Three things plausibly do. Their shift is
+between regions of a continent while ours is between adjacent countries sharing
+a survey instrument, so the covariate distributions are closer. Their label is
+a physical concentration with an absolute scale, while ours is standardised
+within each country by construction, which removes level differences from the
+label before any model sees it. And their in-domain accuracy is much lower
+($R^2 = 0.134$ under spatial cross-validation against our 0.746), so their
+intervals are calibrated on residuals from a weaker model. We cannot separate
+these with the data here, and the comparison is a reason to treat our result as
+specific to this setting rather than as a general finding about conformal
+prediction under geographic shift. Two qualifications
 follow from the post-hoc observations. Average coverage across many countries is
 a poor summary of what a user of one country's estimates should expect, since
 per-country coverage varied over roughly 0.82 to 0.98. And the choice between
@@ -664,6 +693,14 @@ access to the survey and geographic datasets.
 
 \begin{thebibliography}{99}
 \setlength{\itemsep}{2pt}
+
+\bibitem[Adjei et al.(2026)]{adjei2026}
+Y.~O. Adjei, D.~Opoku, E.~Abotsi, K.~O. Amanqua, O.~Kornyo, E.~Soglo-Ahianyo,
+and C.~A. Abbey.
+\newblock Conformal PM2.5 mapping under spatial covariate shift: satellite-reanalysis
+fusion for Africa's green industrial transition.
+\newblock arXiv:2604.22787, 2026.
+\newblock \url{https://arxiv.org/abs/2604.22787}
 
 \bibitem[Barber et al.(2023)]{barber2023}
 R.~F. Barber, E.~J. Cand\`es, A.~Ramdas, and R.~J. Tibshirani.
