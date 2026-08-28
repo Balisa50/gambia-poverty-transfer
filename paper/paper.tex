@@ -552,9 +552,18 @@ evidence that coverage is reliable.
 \subsection{Correlation alignment does not help}
 
 H3 predicted that domain adaptation would improve point accuracy while leaving
-calibration unrepaired. CORAL \citep{sun2016} degraded point accuracy, from $R^2 = 0.709$ to
-$0.646$ out-of-country, and worsened the interval score for both conformal
-methods. The premise fails, so the comparison H3 proposed cannot be made. The
+calibration unrepaired. CORAL \citep{sun2016} degraded point accuracy, from
+$R^2 = 0.709$ to $0.646$ out-of-country, and worsened the interval score for
+both conformal methods.
+
+The baseline here is 0.709 rather than the 0.723 in Table~\ref{tab:r2} because
+the two are computed on different training sets. Table~\ref{tab:r2} fits each
+leave-one-country-out model on all ten remaining countries. The conformal
+experiments must reserve part of the source data to calibrate on, so they fit
+on five of ten spatial folds and hold three for calibration, which is roughly
+half the data and costs about 0.014 in $R^2$. Both figures are reported rather
+than reconciled to one, since each is the correct baseline for its own
+comparison. The premise fails, so the comparison H3 proposed cannot be made. The
 reasoning behind H3 is nonetheless consistent with what we observe: aligning
 feature distributions contains no mechanism acting on interval width, and the
 dispersion of coverage across countries was unchanged (0.053 to 0.055 for split
