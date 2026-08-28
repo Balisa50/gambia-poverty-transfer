@@ -43,20 +43,21 @@ substantially less than 90\%. Correlation alignment degraded point accuracy
 rather than improving it. The pre-registered target-country test of a
 coverage-reliability hypothesis returned a null at 53\% power.
 
-Two observations survive as leads rather than results. Coverage varied across
-held-out countries by 3.7 times what sampling noise permits (range 0.821 to
-0.979 at nominal 90\%), so the average conceals substantial per-country
-variation. On The Gambia, constant-width split conformal undercovered at nominal
-50\% and 80\% by more than four standard errors while remaining at nominal at
-90\% and 95\%, and adaptive conformalized quantile regression did not. Both are
-post-hoc and are reported as such. Coverage holding here is a contrast rather
-than a foregone conclusion: concurrent work measuring conformal coverage on an
-African satellite product under spatial shift reports it falling to 65.3\%
-against a 90\% target. We conclude that cross-border transfer of wealth models
-is better behaved than caution about distribution shift implies, in a region of
-neighbouring countries sharing a survey instrument, and that the residual risk
-lies in interval shape and in per-country variability rather than in average
-coverage.
+The average is nonetheless the wrong summary, and this is the paper's clearest
+result. Coverage for an individual held-out country is dispersed by 2.8 to 4.7
+times what sampling variation permits, at every nominal level tested
+($\chi^2_{10}$ from 108.9 to 273.1, $p < 10^{-17}$ throughout), ranging from
+0.821 to 0.979 at nominal 90\%. The same procedure that covers 82\% of
+Mauritanian clusters covers 98\% of Togolese ones, and nothing observable in
+advance separates the two cases. Dispersion also grows as the nominal level
+falls, so intervals are least trustworthy where they are narrowest. The Gambia
+falls within 1.1 standard deviations of that distribution at every level, an
+unremarkable draw from a wide spread rather than a well-calibrated case. A
+practitioner deploys to one country, so this dispersion rather than the mean is
+the operationally relevant quantity, and it is invisible to any evaluation that
+pools countries. A secondary comparison suggesting that constant-width intervals
+fail in shape where adaptive ones do not was tested against the eleven training
+countries, did not replicate, and is reported as withdrawn.
 \end{abstract}
 
 \section{Introduction}
@@ -570,35 +571,55 @@ dispersion of coverage across countries was unchanged (0.053 to 0.055 for split
 conformal, 0.060 to 0.062 for CQR). Only second-moment alignment was tested; the
 adversarial variant named in the protocol was not run.
 
-\subsection{Two post-hoc observations}
+\subsection{The average conceals a wide per-country spread}
+\label{sec:disp}
 
-The following were found after the pre-registered questions had been answered.
-They are reported as leads.
+The following was found after the pre-registered questions had been answered.
+It is post-hoc in origin, and the evidence for it is nonetheless far stronger
+than for anything the registered hypotheses addressed.
 
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.72\textwidth]{../figures/fig1_coverage_by_country.pdf}
-\caption{Empirical coverage of a nominal 90\% split-conformal interval, by
-held-out country. Grey bars show the interval within which sampling variation
-alone would place the estimate if true coverage were exactly 0.90, given that
-country's cluster count. Nine of eleven training countries fall outside a two
-point band around nominal, and observed dispersion is 3.7 times what sampling
-permits. The Gambia, evaluated once against a pre-registered threshold, is an
-unremarkable member of the spread.}
-\label{fig:bycountry}
-\end{figure}
-\paragraph{Coverage varies across countries more than sampling noise permits.}
 At nominal 90\%, out-of-country coverage ranged from 0.821 (Mauritania) to
 0.979 (Togo), with standard deviation 0.053 against 0.019 in-country
-(Figures~\ref{fig:map} and~\ref{fig:heat}). If true
-coverage were exactly 0.90 everywhere, binomial sampling at these cluster counts
-would give 0.014, so observed dispersion is 3.7 times that
-($\chi^2 = 195.1$, 10 d.f.). Nine of eleven countries fall outside an 88 to 92\%
-band. The average therefore conceals substantial per-country variation, which
-matters because a practitioner applies a model to one country rather than to
-eleven. H4 was the out-of-sample test of this observation and returned a null,
-though at 53\% power.
+(Figures~\ref{fig:map} and~\ref{fig:heat}). Nine of eleven countries fall
+outside an 88 to 92\% band.
+
+The dispersion is not a feature of one nominal level. Table~\ref{tab:disp}
+tests, at each level, whether the eleven observed coverages are consistent with
+every country having exactly nominal coverage and differing only by sampling at
+that country's cluster count. They are not, at any level, by a wide margin.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrrl}
+\toprule
+Nominal & sd across countries & binomial sd & ratio & $\chi^2_{10}$ & $p$ \\
+\midrule
+50\% & 0.1108 & 0.0237 & 4.68 & 273.1 & $<10^{-50}$ \\
+80\% & 0.0889 & 0.0189 & 4.70 & 269.9 & $<10^{-50}$ \\
+90\% & 0.0531 & 0.0142 & 3.74 & 195.1 & $<10^{-35}$ \\
+95\% & 0.0289 & 0.0103 & 2.80 & 108.9 & $<10^{-17}$ \\
+\bottomrule
+\end{tabular}
+\caption{Between-country dispersion of out-of-country coverage, split
+conformal. The binomial column is the standard deviation expected if every
+country's true coverage were exactly nominal and the only variation were
+sampling at that country's cluster count. Observed dispersion exceeds it by a
+factor of 2.8 to 4.7 at every level.}
+\label{tab:disp}
+\end{table}
+
+This is the clearest empirical result in the paper and the one with a direct
+practical consequence. A mean of 88.7\% against a nominal 90\% suggests these
+intervals can be used as stated. Per country they cannot: the same procedure
+that covers 82\% of Mauritanian clusters covers 98\% of Togolese ones, and
+nothing observable in advance separates the two cases. A user deploys to one
+country, and the mean over eleven is not the quantity they need.
+
+The dispersion also grows as the nominal level falls, from a ratio of 2.80 at
+95\% to 4.68 at 50\%. Intervals are least trustworthy where they are narrowest,
+which is the regime a decision rule with a moderate threshold would operate in.
 
 
 \begin{figure}[t]
@@ -637,18 +658,43 @@ $-0.007$ and $+0.011$.}
 \label{fig:heat}
 \end{figure}
 
-\paragraph{Constant-width intervals appear to fail in shape.} On The Gambia,
-split conformal undercovered at nominal 50\% ($0.371$, $z = -4.30$) and 80\%
-($0.704$, $z = -4.03$) while remaining indistinguishable from nominal at 90\%
-and 95\% (Figure~\ref{fig:heat}, bottom row). CQR was within 1.4 standard errors at every level. One of six
-pre-specified secondary tests fell outside its band, which multiplicity alone
-roughly predicts, but the magnitude does not fit that explanation. Coverage that
-fails in the middle of the distribution and holds in the tails is characteristic
-of a width of the wrong shape rather than a width uniformly too small, which is
-the axis separating constant-width from adaptive intervals. The comparison was
-set up in advance for this reason, though without a registered threshold. The
-training pool showed no comparable low-level undercoverage on average (0.491 at
-nominal 0.50, 0.785 at nominal 0.80).
+\subsection{An apparent shape effect, tested and withdrawn}
+
+On The Gambia, split conformal undercovered at nominal 50\% ($0.371$) and 80\%
+($0.704$) while holding at 90\% and 95\%, and CQR did not
+(Figure~\ref{fig:heat}, bottom row). Against binomial sampling those deviations
+are $z = -4.30$ and $z = -4.03$. Coverage that fails in the middle of the
+distribution and holds in the tails is characteristic of an interval of the
+wrong shape rather than one uniformly too narrow, which is the axis separating
+constant-width from adaptive methods, and both were included in advance for
+exactly this comparison.
+
+We tested it and it does not survive. Two checks, both reported.
+
+\paragraph{It does not replicate across the training pool.} Comparing the
+absolute deviation from nominal for split conformal against CQR, country by
+country, the two are indistinguishable at every level: mean absolute deviation
+0.090 against 0.098 at nominal 50\%, 0.074 against 0.077 at 80\%, 0.046 against
+0.050 at 90\%, and 0.024 against 0.026 at 95\%. A Wilcoxon signed-rank test over
+the eleven countries gives $p$ between 0.37 and 0.90 at every level, and split
+conformal is the closer of the two more often than not. If constant width were
+the problem, this is where it would appear.
+
+\paragraph{The Gambian deviations are ordinary once the right reference is
+used.} The $z$ values above compare the target against binomial sampling, which
+presumes every country's coverage is exactly nominal. Table~\ref{tab:disp} shows
+that presumption fails by a factor of three to five. Measured against the
+observed between-country distribution instead, The Gambia sits at $z = -1.08$,
+$-0.91$, $+0.11$ and $+0.62$ across the four levels. It is a typical draw.
+
+The apparent shape effect was therefore the dispersion of
+Section~\ref{sec:disp} seen through the wrong reference distribution, at the
+level where that dispersion is largest. We report it because it was a
+pre-specified secondary comparison and because the reasoning behind it is sound
+in general. It is simply not what these data show, and on this evidence the
+choice between constant-width and adaptive conformal intervals is not the lever
+that matters.
+
 
 \section{Discussion}
 \label{sec:disc}
@@ -676,13 +722,15 @@ label before any model sees it. And their in-domain accuracy is much lower
 intervals are calibrated on residuals from a weaker model. We cannot separate
 these with the data here, and the comparison is a reason to treat our result as
 specific to this setting rather than as a general finding about conformal
-prediction under geographic shift. Two qualifications
-follow from the post-hoc observations. Average coverage across many countries is
-a poor summary of what a user of one country's estimates should expect, since
-per-country coverage varied over roughly 0.82 to 0.98. And the choice between
-constant-width and adaptive conformal intervals may matter more under shift than
-in-domain, since the two methods agreed in-domain and diverged on the target at
-the lower nominal levels.
+prediction under geographic shift.
+
+It also suggests the two results are less different than they appear. Adjei et
+al. report one number for one region; we report eleven, and ours span 0.821 to
+0.979. Their 65.3\% is outside our range, so the difference is real, but a study
+reporting only our mean of 0.887 would have concealed a spread wide enough that
+a single unlucky country could look like their case. The reconciliation may be
+less about our setting being benign than about how much a single coverage figure
+can hide, which is the point of Table~\ref{tab:disp}.
 
 \subsection{Limitations}
 
@@ -727,26 +775,50 @@ see it anyway. It is not a finding of this paper.
 
 \subsection{Future work}
 
-The shape observation is the more tractable lead. It has a mechanism, it was
-anticipated in the design, and unlike the dispersion observation it can be
-tested with real power: constant-width against adaptive conformal, per country,
-at every nominal level, across all eleven training countries. That design has
-not been run and would require pre-registration on the same terms as H4.
+The obvious next question is what predicts a country's coverage. Dispersion is
+established here, but nothing in this design explains it, and a user needs to
+know in advance whether the country in front of them is a Mauritania or a Togo.
+The geographic gradient above is one candidate. Covariate shift measured
+directly between source and target, as \citet{adjei2026} do, is a better one,
+because it is computable without any target labels and is therefore available at
+deployment time. Testing whether a shift statistic predicts coverage loss across
+countries would turn an observed spread into something actionable, and it is a
+design with real power because every country supplies a point.
+
+The second question is what to do about it. Weighted conformal prediction
+\citep{tibshirani2019} recovers coverage under covariate shift when the density
+ratio between source and target can be estimated. We deliberately used the
+unweighted method, since the question here was what happens to the guarantee as
+it is ordinarily applied. Whether the weighted correction narrows the spread in
+Table~\ref{tab:disp} is a direct and answerable follow-up.
+
+We do not propose further work on interval shape. The comparison was made, it
+did not replicate, and the reference-distribution error that produced it is
+explained above.
 
 \section{Conclusion}
 
 We pre-registered four hypotheses about how satellite-based poverty models fail
 across a national border and found no support for any of them. Point accuracy
 and mean interval coverage both transferred, and correlation alignment made
-accuracy worse. Reporting this is more useful than reporting the paper we
-expected to write, because the calibration of these intervals had not previously
-been tested empirically, and for average coverage the answer appears to be that
-it largely holds.
+accuracy worse.
 
-What remains open is narrower and better specified than where we started:
-coverage reliability varies substantially between countries, and constant-width
-conformal intervals may misstate their shape under shift in a way adaptive
-intervals do not.
+The hypotheses were aimed at the wrong quantity. Averaged over eleven held-out
+countries these intervals behave close to their stated level, which is why every
+prediction about the average failed. Per country they do not: coverage is
+dispersed by three to five times what sampling permits at every nominal level,
+and the spread widens as the interval narrows. That dispersion is not a
+secondary caveat to a null result. It is the finding, it is measured on eleven
+independent country pairs rather than asserted, and it bears directly on use,
+because these maps are deployed one country at a time and the mean over eleven
+is not what a user gets.
+
+We also report a secondary comparison that did not survive testing. An apparent
+failure of constant-width intervals on the target dissolved once the eleven
+training countries were checked and once the deviations were measured against
+the observed between-country distribution rather than against binomial sampling.
+It is described rather than omitted, because the reference-distribution error
+that produced it is easy to make and the correction is the substantive point.
 
 \section*{Data and code availability}
 

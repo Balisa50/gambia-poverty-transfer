@@ -324,25 +324,24 @@ Nine of eleven countries fall outside an 88 to 92% band.
 **Post-hoc.** It was found after the registered questions were answered. H4 was
 its out-of-sample test and returned a null.
 
-### Interval shape
+### Interval shape: proposed, tested, withdrawn
 
-On The Gambia, constant-width split conformal undercovered badly at nominal 50%
-and 80% (z = −4.30 and −4.03) while holding at 90% and 95%. Adaptive CQR was
-within 1.4 standard errors everywhere.
+On The Gambia, split conformal undercovered at nominal 50% and 80% while
+adaptive CQR did not. Against binomial sampling that is z = -4.30 and -4.03.
 
-Coverage that fails in the middle of the distribution and holds in the tails is
-characteristic of a width of the wrong **shape**, not one uniformly too small.
-That is the axis separating constant-width from adaptive intervals.
+**It was tested on the eleven training countries and it does not replicate.**
+Split and CQR are indistinguishable at every level, Wilcoxon p between 0.37 and
+0.90, and split is the closer of the two more often than not.
 
-**Post-hoc as a result, but the comparison was designed in advance**, with the
-reasoning in `conformal.py` before any data was extracted. That is the
-difference between a lead and a fishing expedition, and the paper says exactly
-that rather than inflating it.
+**And the reference distribution was wrong.** Those z values presume every
+country's coverage is exactly nominal. It is not, by a factor of three to five.
+Against the observed between-country distribution The Gambia sits at z = -1.08,
+-0.91, +0.11, +0.62. A typical draw.
 
-**What not to claim:** this is not confirmation of H4. H4 was about coverage at
-90% deviating from nominal, and coverage at 90% did not. Recasting a 90%-level
-hypothesis as an 80%-level one after seeing which level moved is the practice
-this project criticises.
+**If asked about this, the answer is that we tested our own lead and reported
+that it failed.** That is a stronger position than having left it untested, and
+it is why the dispersion result is stated with confidence while this one is
+withdrawn.
 
 ### The geographic gradient
 

@@ -151,3 +151,62 @@ prior written before the data, and it is testable per country across the eleven
 training countries at every nominal level, which is a design with real power
 rather than a single draw. That test has not been run and would need
 pre-registering like this one.
+
+---
+
+## Amendment, 2026-08-28: the shape lead was tested and withdrawn
+
+The section above records an apparent finding: split conformal undercovering on
+The Gambia at nominal 50% and 80% while adaptive CQR did not. It was called a
+lead rather than a result, and the paper proposed testing it properly across the
+eleven training countries.
+
+That test has now been run, and the lead does not survive.
+
+### It does not replicate
+
+Absolute deviation from nominal, split conformal against CQR, per country:
+
+| nominal | split | CQR | split closer | Wilcoxon p |
+|---|---|---|---|---|
+| 50% | 0.0898 | 0.0982 | 7 of 11 | 0.765 |
+| 80% | 0.0738 | 0.0765 | 5 of 11 | 0.898 |
+| 90% | 0.0460 | 0.0497 | 4 of 11 | 0.831 |
+| 95% | 0.0243 | 0.0256 | 3 of 11 | 0.365 |
+
+The two methods are indistinguishable at every level, and split conformal is the
+closer of the two more often than not. If constant width were the problem, this
+is exactly where it would show.
+
+### The reference distribution was wrong
+
+The z values of -4.30 and -4.03 compared The Gambia against **binomial**
+sampling, which presumes every country's true coverage is exactly nominal.
+
+That presumption is false, and this project's own data shows it. Between-country
+dispersion exceeds binomial by a factor of 2.8 to 4.7 at every level:
+
+| nominal | sd across countries | binomial sd | ratio | chi2 (10 d.f.) |
+|---|---|---|---|---|
+| 50% | 0.1108 | 0.0237 | 4.68 | 273.1 |
+| 80% | 0.0889 | 0.0189 | 4.70 | 269.9 |
+| 90% | 0.0531 | 0.0142 | 3.74 | 195.1 |
+| 95% | 0.0289 | 0.0103 | 2.80 | 108.9 |
+
+Measured against the observed between-country distribution, The Gambia sits at
+z = -1.08, -0.91, +0.11, +0.62 across the four levels. It is a typical draw.
+
+### What this means
+
+The two post-hoc observations were never two things. The apparent shape effect
+was the dispersion, seen through the wrong reference distribution, at the level
+where dispersion happens to be largest.
+
+Consolidating them improves the paper rather than weakening it. Dispersion is
+now the reported finding, and its evidence is far stronger than anything the
+registered hypotheses addressed: eleven countries, four nominal levels, every
+chi-square below 1e-17.
+
+The withdrawal is recorded here in full because the reference-distribution error
+is easy to make, and because a lead that was tested and failed is a more useful
+thing to publish than a lead that was left untested.
