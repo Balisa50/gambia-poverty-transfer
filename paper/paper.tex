@@ -493,6 +493,22 @@ quantifies spatial leakage in the naive estimate.}
 \label{tab:r2}
 \end{table}
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{../figures/fig5_predicted_observed.pdf}
+\caption{Predicted against observed cluster wealth, with the identity line in
+red. The target panel reproduces the registered evaluation exactly, fitted on
+folds 3 to 9 with folds 0 to 2 reserved for conformal calibration; fitting on
+all eleven training countries instead would give 0.696. The first two panels
+pool predictions across folds and countries, so their $R^2$ differs slightly
+from Table~\ref{tab:r2}, which reports means across folds and across countries
+respectively. Predictions are visibly compressed toward the mean in all three
+panels, over-predicting the poorest clusters and under-predicting the richest,
+which is the pattern \citet{corral2025} report for point estimates in
+unsurveyed areas.}
+\label{fig:predobs}
+\end{figure}
+
 H1 predicted an out-of-country drop of roughly a third. The observed drop from
 in-country blocked to leave-one-country-out is 0.023, about three per cent
 (Table~\ref{tab:r2}). H1 is falsified. This is consistent with \citet{yeh2020},
@@ -565,7 +581,8 @@ unremarkable member of the spread.}
 \end{figure}
 \paragraph{Coverage varies across countries more than sampling noise permits.}
 At nominal 90\%, out-of-country coverage ranged from 0.821 (Mauritania) to
-0.979 (Togo), with standard deviation 0.053 against 0.019 in-country. If true
+0.979 (Togo), with standard deviation 0.053 against 0.019 in-country
+(Figures~\ref{fig:map} and~\ref{fig:heat}). If true
 coverage were exactly 0.90 everywhere, binomial sampling at these cluster counts
 would give 0.014, so observed dispersion is 3.7 times that
 ($\chi^2 = 195.1$, 10 d.f.). Nine of eleven countries fall outside an 88 to 92\%
@@ -586,10 +603,35 @@ distribution and holds in the tails is characteristic of a width of the wrong
 shape rather than one uniformly too small.}
 \label{fig:calib}
 \end{figure}
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\textwidth]{../figures/fig4_study_area.pdf}
+\caption{The twelve surveys, shaded by out-of-country coverage of a nominal
+90\% interval. The Gambia is outlined and was evaluated once. The failures are
+not uniformly distributed: the Sahelian countries at the top of the map
+undercover and the wetter coastal countries overcover. That apparent gradient
+was noticed by inspecting this figure and is treated as a lead in
+Section~\ref{sec:disc}, not as a result.}
+\label{fig:map}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.72\textwidth]{../figures/fig6_coverage_heatmap.pdf}
+\caption{Empirical minus nominal coverage, split conformal, by country and
+nominal level. Both post-hoc observations are visible at once. Reading down a
+column gives the dispersion across countries, from Mali at $-0.146$ to Togo at
+$+0.188$ at nominal 50\%. Reading along a row gives the level dependence: for
+almost every country the deviation shrinks as the nominal level rises. The
+Gambia, below the rule, shows that pattern clearly, at $-0.129$, $-0.096$,
+$-0.007$ and $+0.011$.}
+\label{fig:heat}
+\end{figure}
+
 \paragraph{Constant-width intervals appear to fail in shape.} On The Gambia,
 split conformal undercovered at nominal 50\% ($0.371$, $z = -4.30$) and 80\%
 ($0.704$, $z = -4.03$) while remaining indistinguishable from nominal at 90\%
-and 95\%. CQR was within 1.4 standard errors at every level. One of six
+and 95\% (Figure~\ref{fig:heat}, bottom row). CQR was within 1.4 standard errors at every level. One of six
 pre-specified secondary tests fell outside its band, which multiplicity alone
 roughly predicts, but the magnitude does not fit that explanation. Coverage that
 fails in the middle of the distribution and holds in the tails is characteristic
@@ -653,6 +695,26 @@ The target-country test had 53\% power. This is a consequence of having one
 target country with 280 clusters and was stated before the test was run. A study
 designed to test the dispersion observation would use many countries and every
 nominal level rather than a single draw.
+
+\subsection{A geographic pattern in the failures}
+
+Figure~\ref{fig:map} suggests the coverage failures are not scattered at
+random. The three driest, most northerly countries undercover, Mauritania at
+0.821, Senegal at 0.836 and Mali at 0.838, while three of the wetter coastal
+countries overcover, Togo at 0.979, Sierra Leone at 0.953 and Guinea at 0.945.
+
+Tested after the fact, country mean latitude correlates with coverage at
+Spearman $\rho = -0.564$ ($p = 0.071$) and mean annual rainfall at
+$\rho = 0.655$ ($p = 0.029$). Two things make this weak evidence and both are
+stated rather than left for a reader to notice. The pattern was found by
+looking at the map, and the tests were run afterwards on the same eleven
+numbers that suggested it. Two covariates were tried, so the smaller $p$ value
+should be read with that in mind, and the rank test on latitude does not reach
+conventional significance in any case.
+
+We report it because it is a specific, testable proposition for a study
+designed around it, and because a reader looking at Figure~\ref{fig:map} would
+see it anyway. It is not a finding of this paper.
 
 \subsection{Future work}
 
