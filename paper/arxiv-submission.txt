@@ -1,0 +1,83 @@
+================================================================
+arXiv submission metadata
+================================================================
+
+TITLE
+-----
+Do prediction intervals for satellite-based poverty estimates survive a
+national border? A pre-registered evaluation in West Africa
+
+AUTHORS
+-------
+Abdoulie Balisa
+
+CATEGORIES
+----------
+Primary:   stat.AP  (Statistics - Applications)
+Secondary: stat.ME  (Statistics - Methodology)
+           cs.LG    (Machine Learning)
+           econ.GN  (General Economics)
+
+COMMENTS
+--------
+13 pages, 3 figures, 3 tables. Pre-registered; protocol, dated amendments
+and analysis code at https://github.com/Balisa50/gambia-poverty-transfer
+
+ACM/MSC CLASS (optional)
+------------------------
+62P25 (Applications of statistics to social sciences)
+
+================================================================
+ABSTRACT  (plain text, 1,917 characters; arXiv limit 1,920)
+================================================================
+
+Satellite-based models of household wealth are validated on survey clusters
+from one set of countries, then applied to countries with no survey at all,
+so accuracy is measured under conditions that do not match deployment. We
+ask whether the uncertainty such models report stays valid across a national
+border, using cluster-level wealth index values from twelve West African
+Demographic and Health Surveys (6,706 clusters, 155,796 households) and open
+geospatial covariates. The Gambia was withheld from all model development
+and evaluated once against a pre-registered threshold.
+
+Four hypotheses were fixed before data access and none was supported. Point
+accuracy fell by about three percent across a border rather than the
+predicted third (R^2 = 0.746 in-country under spatial blocking, 0.723 under
+leave-one-country-out, 0.673 on the target). Mean conformal coverage also
+transferred: a nominal 90% interval covered 88.7% of held-out foreign
+clusters and 89.3% of Gambian clusters, against a registered prediction of
+substantially less than 90%. Correlation alignment degraded accuracy rather
+than improving it. The registered target test returned a null at 53% power.
+
+Two observations are carried as leads. Coverage varied across held-out
+countries by 3.7 times what sampling noise permits (0.821 to 0.979 at
+nominal 90%), so the average hides per-country spread. On the target,
+constant-width split conformal undercovered at nominal 50% and 80% by over
+four standard errors while holding at 90% and 95%; adaptive conformalized
+quantile regression did not.
+
+Concurrent work reports one coverage figure for per-country fits; whether
+coverage survives transfer, resolved per country and across nominal levels,
+had not been reported. Cross-border transfer is better behaved than
+distribution-shift caution implies, and the residual risk lies in interval
+shape and per-country spread rather than average coverage.
+
+================================================================
+NOTES BEFORE YOU SUBMIT
+================================================================
+
+1. arXiv needs an endorsement for stat.AP if this is your first submission
+   in that archive. A supervisor or any endorsed author can give it. Request
+   it before you upload, since it can take a few days.
+
+2. Upload paper.tex plus the three figure PDFs. arXiv builds from source, so
+   change the \includegraphics paths from ../figures/ to figures/ if you
+   upload the figures at the top level, or keep the figures/ subdirectory.
+
+3. arXiv strips the abstract's paragraph breaks in some views. The text
+   above reads correctly either way.
+
+4. Licence: the default arXiv licence is fine. CC BY 4.0 is also reasonable
+   and is required by some funders.
+
+5. Do not upload any DHS file. The submission contains no data.
